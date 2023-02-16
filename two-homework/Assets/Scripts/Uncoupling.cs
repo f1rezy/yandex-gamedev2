@@ -27,4 +27,10 @@ public class Uncoupling : MonoBehaviour
             rb.AddForce(Vector2.left * moveSpeed, ForceMode2D.Impulse);
         }
     }
+
+    private void OnEnterCollider2D(Collider2D collision)
+    {
+        Rigidbody2D rb_col = collision.GetComponent<Rigidbody2D>();
+        gameObject.AddComponent<HingeJoint2D>().connectedBody = rb_col;
+    }
 }
