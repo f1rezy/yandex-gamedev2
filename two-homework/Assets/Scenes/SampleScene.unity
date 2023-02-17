@@ -1228,9 +1228,9 @@ HingeJoint2D:
   m_ConnectedRigidBody: {fileID: 1644934561}
   m_BreakForce: Infinity
   m_BreakTorque: Infinity
-  m_AutoConfigureConnectedAnchor: 1
-  m_Anchor: {x: 0, y: 0.99}
-  m_ConnectedAnchor: {x: 0, y: -0.41}
+  m_AutoConfigureConnectedAnchor: 0
+  m_Anchor: {x: 0, y: 1.2}
+  m_ConnectedAnchor: {x: 0, y: 0}
   m_UseMotor: 0
   m_Motor:
     m_MotorSpeed: 0
@@ -1252,7 +1252,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: 0.023599625, y: 0.005899906}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -1263,7 +1263,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 2.4775, y: 2.015}
+  m_Size: {x: 1.3368487, y: 2.0267997}
   m_EdgeRadius: 0
 --- !u!50 &1097453940
 Rigidbody2D:
@@ -1365,7 +1365,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d8a051fb7df594bf5803a341d962778d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _moveSpeed: 500
+  _moveSpeed: 1500
 --- !u!1 &1575563823
 GameObject:
   m_ObjectHideFlags: 0
