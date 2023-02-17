@@ -1,4 +1,5 @@
-using System;
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent(typeof(HingeJoint2D))]
@@ -22,6 +23,11 @@ public class PlayerController : MonoBehaviour
         Swing();
     }
 
+    private void OnCollisionEnter2D(Collision2D other)
+    {
+        Hook(other);
+    }
+
     private void Swing()
     {
         float horizontalInput = Input.GetAxisRaw("Horizontal");
@@ -29,21 +35,40 @@ public class PlayerController : MonoBehaviour
         _rigidbody2D.AddForce(new Vector2(horizontalInput, 0));
     }
 
-    private void Unhook()
+    private void Hook(Collision2D other)
     {
-        if (Input.GetMouseButtonDown(0))
+        if (_joint.enabled)
         {
-            _joint.enabled = false;
+            return;
         }
-    }
 
-    private void OnCollisionEnter2D(Collision2D other)
-    {
         if (other.gameObject.TryGetComponent(out EndOfRope endOfRope))
         {
             _joint.enabled = true;
             Rigidbody2D colliderRb = other.gameObject.GetComponent<Rigidbody2D>();
             _joint.connectedBody = colliderRb;
         }
+    }
+
+    private void Unhook()
+    {
+        if (Input.GetMouseButtonDown(0))
+        {
+            Collider2D collider = _joint.connectedBody.gameObject.GetComponent<Collider2D>();
+            collider.enabled = false;
+            _joint.enabled = false;
+            StartCoroutine(Waiting(collider));
+        }
+    }
+
+    private IEnumerator Waiting(Collider2D collider)
+    {
+        yield return new WaitForSeconds(1f);
+        RestoreCollider(collider);
+    }
+
+    private void RestoreCollider(Collider2D collider)
+    {
+        collider.enabled = true;
     }
 }
